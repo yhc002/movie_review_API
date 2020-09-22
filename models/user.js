@@ -3,7 +3,6 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING(20),
       allowNull: false,
-      unique: true,
     },
     email: {
       type: DataTypes.STRING(40),
@@ -18,5 +17,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(100),
       allowNull: false,
     },
+    role: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    }
   });
 };

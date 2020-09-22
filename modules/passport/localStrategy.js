@@ -23,6 +23,7 @@ module.exports = (passport) => {
           done(null, {
             email,
             id: exUser.id,
+            role: exUser.role,
           })
         } else {
           done(null, false, 'Wrong Password');

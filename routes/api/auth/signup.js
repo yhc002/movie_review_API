@@ -21,7 +21,8 @@ exports.addUser = async (req, res, next) => {
       console.log('account already exists');
       return res.status(400).json({ message: "The email already exists" });
     }
-    await User.create({ email: data.email, password: data.password, name: data.name, salt: data.salt });
+    await User.create({ email: data.email, password: data.password, name: data.name, salt: data.salt, role: 1 });
+    return res.status(400).json({ message: "Welcome. You have been signed" });
   } catch(error) {
     console.log('signup error', error);
     return res.status(500).send(error);
