@@ -14,5 +14,10 @@ db.Sequelize = Sequelize;
 
 db.User = require('./user')(sequelize, Sequelize);
 db.Movie = require('./movie')(sequelize, Sequelize);
+db.Rating = require('./rating')(sequelize, Sequelize);
+
+db.Rating.belongsTo(db.User, {foreignKey: 'user_id', sourceKey: 'id'});
+db.Rating.belongsTo(db.Movie, {foreignKey: 'movie_id', sourceKey: 'id'});
+
 
 module.exports = db;
