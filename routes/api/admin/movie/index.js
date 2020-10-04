@@ -11,4 +11,16 @@ router.post('/',
     movie.postMovie
 );
 
+router.put('/:id', 
+    passport.authenticate('JWT', { session: false }),
+    auth.checkAdmin,    
+    movie.updateMovie
+);
+
+router.delete('/:id', 
+    passport.authenticate('JWT', { session: false }),
+    auth.checkAdmin,    
+    movie.deleteMovie
+);
+
 module.exports = router;
