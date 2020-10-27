@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": null,
-    "database": "database_development",
+    "password": "dudgjs001",
+    "database": "movie_review",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },

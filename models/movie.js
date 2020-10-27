@@ -14,5 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     release_kr: {
       type: DataTypes.DATE,
     },
+    poster: {
+      type: DataTypes.STRING(100),
+    },
   });
 };
