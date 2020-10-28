@@ -1,0 +1,237 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is Movie Review server API",
+    "version": "1.0.0",
+    "title": "Movie Review server API",
+    "contact": {
+      "email": "yhc002@naver.com"
+    }
+  },
+  "host": "virtserver.swaggerhub.com",
+  "basePath": "/BunongBunong/movie_review/1.0.0",
+  "tags": [
+    {
+      "name": "api/auth",
+      "description": "login 관련 API"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "security": [
+    {
+      "APIKey": []
+    }
+  ],
+  "paths": {
+    "/api/auth/signup": {
+      "post": {
+        "tags": [
+          "api/auth"
+        ],
+        "summary": "주어진 정보로 신규 가입",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "required": [
+                "email",
+                "name",
+                "password"
+              ],
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "format": "email",
+                  "example": "user@example.com",
+                  "description": "가입하고자하는 email"
+                },
+                "password": {
+                  "type": "string",
+                  "description": "가입하고자하는 비밀번호"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "신규회원의 이름"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "API 요청 실행 결과(성공)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Success"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "API 요청 실행 결과(실패)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "The email already exists"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "요청의 유효성에 문제가 있다는 정보를 반환",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {}
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "tags": [
+          "api/auth"
+        ],
+        "summary": "주어진 email, 비밀번호로 로그인 시도",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "required": [
+                "email",
+                "password"
+              ],
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "format": "email",
+                  "example": "user@example.com",
+                  "description": "회원의 email"
+                },
+                "password": {
+                  "type": "string",
+                  "description": "회원의 비밀번호"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "API 요청 실행 결과",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user": {
+                  "type": "object",
+                  "properties": {
+                    "email": {
+                      "type": "string",
+                      "format": "email",
+                      "example": "user@example.com",
+                      "description": "회원의 email"
+                    },
+                    "user_id": {
+                      "type": "string",
+                      "description": "회원의 id"
+                    },
+                    "company_id": {
+                      "type": "string",
+                      "description": "회원이 소속한 company의 id"
+                    },
+                    "role": {
+                      "type": "string",
+                      "example": "회원의 가입 자격(관리자, 직원 등)",
+                      "description": "role of user"
+                    }
+                  }
+                },
+                "token": {
+                  "type": "string",
+                  "description": "인증정보 토큰"
+                },
+                "exp": {
+                  "type": "string",
+                  "description": "토큰 유효기간"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/auth/info": {
+      "get": {
+        "tags": [
+          "api/auth"
+        ],
+        "summary": "회원의 인증정보를 받아온다",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "회원의 인증정보",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "format": "email",
+                  "example": "user@example.com",
+                  "description": "회원의 email"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "회원의 이름"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "query 에러 등의 서버 에러 발생 시 전송",
+            "schema": {
+              "type": "object",
+              "example": {
+                "message": "Unknown column 'undefined' in 'where clause'",
+                "code": "ER_BAD_FIELD_ERROR",
+                "errno": 1054,
+                "sqlState": "42S22",
+                "sqlMessage": "Unknown column 'undefined' in 'where clause'"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "APIKey": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  }
+}
