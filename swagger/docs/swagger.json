@@ -8,8 +8,7 @@
       "email": "yhc002@naver.com"
     }
   },
-  "host": "virtserver.swaggerhub.com",
-  "basePath": "/BunongBunong/movie_review/1.0.0",
+  "host": "localhost:4000",
   "tags": [
     {
       "name": "api/auth",
